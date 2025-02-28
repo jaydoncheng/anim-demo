@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cm2q7a244qv66"]
+
+[ext_resource type="Texture2D" uid="uid://dxuaeu6ot47ia" path="res://materials/textures/plastered_wall_04_diff_4k.jpg" id="1_7vfi5"]
+
+[resource]
+resource_name = "plastered_wall_04"
+cull_mode = 2
+albedo_texture = ExtResource("1_7vfi5")

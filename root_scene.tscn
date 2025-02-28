@@ -1,3 +1,40 @@
-[gd_scene format=3 uid="uid://bdjq411k6khfd"]
+[gd_scene load_steps=6 format=3 uid="uid://bdjq411k6khfd"]
+
+[ext_resource type="Material" uid="uid://cm2q7a244qv66" path="res://materials/plastered_wall_04.tres" id="1_smig7"]
+[ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player.tscn" id="1_y8px8"]
+[ext_resource type="Material" uid="uid://oxi14wxraed3" path="res://materials/laminate_floor_02.tres" id="3_yxcan"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rwqn5"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a1xqe"]
+material = ExtResource("1_smig7")
+size = Vector3(100, 1, 100)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_rwqn5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+material_override = ExtResource("1_smig7")
+mesh = SubResource("BoxMesh_a1xqe")
+skeleton = NodePath("../..")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_y8px8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.854377, 0.519653, 0, -0.519653, 0.854377, 0, 11.2215, 22.7506)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.15385, 0, 0, 0, 0.897025, 0, 0, 0, 1.93769, 3.5128, 1.04232, -4.44778)
+use_collision = true
+material = ExtResource("3_yxcan")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(7.198, 0, 0, 0, 2.537, 0, 0, 0, 4.423, 9.05932, 1.04232, -4.44778)
+use_collision = true
+material = ExtResource("3_yxcan")
