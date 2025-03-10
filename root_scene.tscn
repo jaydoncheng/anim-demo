@@ -1,8 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdjq411k6khfd"]
+[gd_scene load_steps=9 format=3 uid="uid://bdjq411k6khfd"]
 
 [ext_resource type="Material" uid="uid://cm2q7a244qv66" path="res://materials/plastered_wall_04.tres" id="1_smig7"]
 [ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player.tscn" id="1_y8px8"]
 [ext_resource type="Material" uid="uid://oxi14wxraed3" path="res://materials/laminate_floor_02.tres" id="3_yxcan"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p2uhe"]
+sky_top_color = Color(0.384314, 0.454902, 0.713726, 1)
+sky_horizon_color = Color(0.831373, 0.654902, 0.439216, 1)
+ground_bottom_color = Color(0.101151, 0.1311, 0.250233, 1)
+ground_horizon_color = Color(0.831373, 0.654902, 0.439216, 1)
+ground_curve = 0.149286
+
+[sub_resource type="Sky" id="Sky_41c1a"]
+sky_material = SubResource("ProceduralSkyMaterial_p2uhe")
+
+[sub_resource type="Environment" id="Environment_njx1r"]
+background_mode = 2
+sky = SubResource("Sky_41c1a")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_white = 1.95
+ssr_enabled = true
+ssr_max_steps = 32
+ssr_fade_in = 0.310579
+ssr_fade_out = 3.4822
+ssao_enabled = true
+ssao_intensity = 3.0
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+fog_mode = 1
+fog_light_color = Color(0.796192, 0.821936, 0.8858, 1)
+fog_density = 1.0
+fog_depth_curve = 3.68475
+fog_depth_begin = 960.5
+fog_depth_end = 2584.3
+volumetric_fog_emission_energy = 213.91
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rwqn5"]
 size = Vector3(100, 1, 100)
@@ -12,6 +47,9 @@ material = ExtResource("1_smig7")
 size = Vector3(100, 1, 100)
 
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_njx1r")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
