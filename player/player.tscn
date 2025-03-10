@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkeqhhuk7arar"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_ts5su"]
+[ext_resource type="Script" path="res://player/state_machine.gd" id="2_5851c"]
+[ext_resource type="Script" path="res://player/states/idle.gd" id="3_1gwq4"]
+[ext_resource type="Script" path="res://player/states/sprinting.gd" id="4_1m3a8"]
+[ext_resource type="Script" path="res://player/states/moving.gd" id="4_luk7m"]
+[ext_resource type="Script" path="res://player/states/jumping.gd" id="6_dtapb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uob71"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fxqb8"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_ts5su")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_uob71")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_fxqb8")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.8, 0)
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
+fov = 90.0
+
+[node name="RayCast3D(debug ray)" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.743802, -0.783233)
+debug_shape_custom_color = Color(0, 0, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "debug_label")]
+script = ExtResource("2_5851c")
+starting_state = NodePath("idle")
+debug_label = NodePath("../Label")
+
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("jumping_state", "moving_state")]
+script = ExtResource("3_1gwq4")
+jumping_state = NodePath("../jumping")
+moving_state = NodePath("../moving")
+
+[node name="sprinting" type="Node" parent="state_machine" node_paths=PackedStringArray("moving_state", "jumping_state", "mesh_instance")]
+script = ExtResource("4_1m3a8")
+moving_state = NodePath("../moving")
+jumping_state = NodePath("../jumping")
+mesh_instance = NodePath("../../MeshInstance3D")
+
+[node name="moving" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "sprinting_state", "jumping_state")]
+script = ExtResource("4_luk7m")
+idle_state = NodePath("../idle")
+sprinting_state = NodePath("../sprinting")
+jumping_state = NodePath("../jumping")
+
+[node name="jumping" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("6_dtapb")
+idle_state = NodePath("../idle")

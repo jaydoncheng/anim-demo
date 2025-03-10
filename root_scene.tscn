@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bdjq411k6khfd"]
 
 [ext_resource type="Material" uid="uid://cm2q7a244qv66" path="res://materials/plastered_wall_04.tres" id="1_smig7"]
-[ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player.tscn" id="1_y8px8"]
+[ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player/player.tscn" id="1_y8px8"]
 [ext_resource type="Material" uid="uid://oxi14wxraed3" path="res://materials/laminate_floor_02.tres" id="3_yxcan"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p2uhe"]
@@ -28,7 +28,6 @@ ssr_fade_out = 3.4822
 ssao_enabled = true
 ssao_intensity = 3.0
 sdfgi_enabled = true
-sdfgi_use_occlusion = true
 fog_mode = 1
 fog_light_color = Color(0.796192, 0.821936, 0.8858, 1)
 fog_density = 1.0
