@@ -1,16 +1,15 @@
-class_name StateMachine
 extends Node
 
 @export
 var starting_state: State
 
 @export
-var parent: Node
-
-@export
 var debug_label: Label
 
 var current_state
+func get_current_state():
+    return current_state
+
 func _ready():
     change_state(starting_state)
 
