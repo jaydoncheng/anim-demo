@@ -6,7 +6,12 @@ const VERTICAL_ANGLE_LIMIT = 45
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready
+var state_machine = $state_machine
+
 func _ready() -> void:
+    state_machine.init(self)
+
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
@@ -18,11 +23,13 @@ func _input(event: InputEvent) -> void:
     if event.is_action("mouse_left"):
         Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+    state_machine.process_input(event)
+
 func _physics_process(delta: float):
-    pass
+    state_machine.process_physics(delta)
 
 func _process(delta: float):
-    pass
+    state_machine.process_frame(delta)
 
 func rotate_vertical(angle: float) -> void:
     # Get the current rotation around the X axis in degrees.

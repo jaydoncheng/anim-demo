@@ -1,24 +1,19 @@
 class_name State
 extends Node
 
-var parent
-func _ready():
-    parent = get_parent()
+var parent 
 
-func _enter():
+func enter():
     pass
 
-func _exit():
+func exit():
     pass
 
-func leave():
-    return parent
+func process_input(event: InputEvent) -> State:
+    return null
 
-func _process_input(event: InputEvent) -> State:
-    return
+func process_physics(delta: float) -> State:
+    return null
 
-func _process_physics(delta: float) -> State:
-    return
-
-func _process_frame(delta: float) -> State:
-    return
+func process_frame(delta: float) -> State:
+    return null

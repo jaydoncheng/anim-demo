@@ -1,18 +1,18 @@
 extends State
 
 # Must always start with super()
-func _enter():
+func enter():
     super()
 
-func _exit():
+func exit():
     pass
 
 # Returning null retains this state
-func _process_input(event: InputEvent) -> State:
+func process_input(event: InputEvent) -> State:
     return null
 
-func _process_physics(delta: float) -> State:
+func process_physics(delta: float) -> State:
     return null
 
-func _process_frame(delta: float) -> State:
+func process_frame(delta: float) -> State:
     return null
