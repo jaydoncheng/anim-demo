@@ -7,7 +7,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready
-var state_machine = $state_machine
+var state_machine = $StateMachine
 
 func _ready() -> void:
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

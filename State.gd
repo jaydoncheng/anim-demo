@@ -1,9 +1,14 @@
+# a base State class
 class_name State
 extends Node
 
-# The object which has state
 @export
-var object: Node
+var object: Node # The object which should have this state
+
+func _ready():
+    for child in get_children():
+        if child is State:
+            child.object = object
 
 func enter():
     pass

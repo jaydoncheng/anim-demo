@@ -9,10 +9,10 @@ func exit():
 
 # Returning null retains this state
 func process_input(event: InputEvent) -> State:
-    return null
+    return
 
 func process_physics(delta: float) -> State:
-    return null
+    return
 
 func process_frame(delta: float) -> State:
-    return null
+    return

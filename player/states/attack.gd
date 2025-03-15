@@ -9,7 +9,8 @@ var done: bool = false
 # Must always start with super()
 func enter():
     super()
-    object.velocity += object.global_transform.basis * Vector3(0,0,-4)
+    # object.velocity += object.global_transform.basis * Vector3(0,0,-4)
+    object.velocity = object.global_transform.basis * Vector3(0,0,-20)
 
     done = true
     print(previous_state)
