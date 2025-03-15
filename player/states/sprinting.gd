@@ -44,10 +44,10 @@ func process_physics(delta) -> State:
 
     object.velocity += object.get_gravity() * delta
 
-    var input_dir = Input.get_vector("moveleft", "moveright", "moveforward", "movebackward")
-    print(input_dir)
-    var direction = (object.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-    print(direction)
+    # var input_dir = Input.get_vector("moveleft", "moveright", "moveforward", "movebackward")
+    # print(input_dir)
+    # var direction = (object.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+    # print(direction)
     # if direction:
     #     object.rotation = direction
 
