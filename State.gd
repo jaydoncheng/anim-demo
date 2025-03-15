@@ -1,7 +1,9 @@
 class_name State
 extends Node
 
-var parent 
+# The object which has state
+@export
+var object: Node
 
 func enter():
     pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkeqhhuk7arar"]
+[gd_scene load_steps=10 format=3 uid="uid://dkeqhhuk7arar"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ts5su"]
 [ext_resource type="Script" path="res://player/state_machine.gd" id="2_5851c"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://player/states/sprinting.gd" id="4_1m3a8"]
 [ext_resource type="Script" path="res://player/states/moving.gd" id="4_luk7m"]
 [ext_resource type="Script" path="res://player/states/jumping.gd" id="6_dtapb"]
+[ext_resource type="Script" path="res://player/states/attack.gd" id="7_3hn0w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uob71"]
 
@@ -19,8 +20,11 @@ script = ExtResource("1_ts5su")
 shape = SubResource("CapsuleShape3D_uob71")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_fxqb8")
+
+[node name="RayCast3D(debug ray)" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.743802, -0.783233)
+debug_shape_custom_color = Color(0, 0, 1, 1)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.8, 0)
@@ -30,36 +34,50 @@ spring_length = 2.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.5)
 fov = 90.0
 
-[node name="RayCast3D(debug ray)" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.743802, -0.783233)
-debug_shape_custom_color = Color(0, 0, 1, 1)
-
-[node name="Label" type="Label" parent="."]
+[node name="StateLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Velocity" type="Label" parent="."]
+offset_top = 42.0
+offset_right = 40.0
+offset_bottom = 65.0
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state", "debug_label")]
 script = ExtResource("2_5851c")
 starting_state = NodePath("idle")
-debug_label = NodePath("../Label")
+debug_label = NodePath("../StateLabel")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("jumping_state", "moving_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("jumping_state", "moving_state", "attack_state", "object")]
 script = ExtResource("3_1gwq4")
 jumping_state = NodePath("../jumping")
 moving_state = NodePath("../moving")
+attack_state = NodePath("../attack")
+object = NodePath("../..")
 
-[node name="sprinting" type="Node" parent="state_machine" node_paths=PackedStringArray("moving_state", "jumping_state", "mesh_instance")]
+[node name="sprinting" type="Node" parent="state_machine" node_paths=PackedStringArray("moving_state", "jumping_state", "attack_state", "mesh_instance", "object")]
 script = ExtResource("4_1m3a8")
 moving_state = NodePath("../moving")
 jumping_state = NodePath("../jumping")
+attack_state = NodePath("../attack")
 mesh_instance = NodePath("../../MeshInstance3D")
+object = NodePath("../..")
 
-[node name="moving" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "sprinting_state", "jumping_state")]
+[node name="jumping" type="Node" parent="state_machine" node_paths=PackedStringArray("moving_state", "attack_state", "object")]
+script = ExtResource("6_dtapb")
+moving_state = NodePath("../moving")
+attack_state = NodePath("../attack")
+object = NodePath("../..")
+
+[node name="moving" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "sprinting_state", "jumping_state", "attack_state", "object")]
 script = ExtResource("4_luk7m")
 idle_state = NodePath("../idle")
 sprinting_state = NodePath("../sprinting")
 jumping_state = NodePath("../jumping")
+attack_state = NodePath("../attack")
+FRICTION = 0.3
+object = NodePath("../..")
 
-[node name="jumping" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
-script = ExtResource("6_dtapb")
-idle_state = NodePath("../idle")
+[node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("object")]
+script = ExtResource("7_3hn0w")
+object = NodePath("../..")

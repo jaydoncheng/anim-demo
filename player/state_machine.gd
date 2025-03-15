@@ -7,10 +7,7 @@ var starting_state: State
 var debug_label: Label
 
 var current_state
-func init(parent: Node):
-    for child in get_children():
-        child.parent = parent
-
+func _ready():
     change_state(starting_state)
 
 func change_state(new_state: State):
@@ -19,6 +16,7 @@ func change_state(new_state: State):
 
     current_state = new_state
     current_state.enter()
+    print(current_state)
     debug_label.text = current_state.to_string()
 
 func process_input(event: InputEvent):
