@@ -25,7 +25,7 @@ func process_input(event: InputEvent) -> State:
 func process_physics(delta) -> State:
     object.velocity += object.get_gravity() * delta
     if done:
-        return previous_state
+        return idle_state
     return
 
 func process_frame(delta) -> State:

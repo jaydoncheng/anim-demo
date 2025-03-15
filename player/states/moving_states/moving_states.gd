@@ -12,6 +12,8 @@ var sprinting_state: State
 var idle_state: State
 @export
 var jumping_state: State
+@export
+var attack_state: State
 
 func _ready():
     super()
@@ -28,6 +30,12 @@ func enter():
 
 func exit():
     pass
+
+func process_input(_event: InputEvent) -> State:
+    if Input.is_action_pressed("attack"):
+        return attack_state
+
+    return
 
 func move(speed: float = SPEED):
     var input_dir = Input.get_vector("moveleft", "moveright", "moveforward", "movebackward")

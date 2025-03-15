@@ -86,12 +86,13 @@ script = ExtResource("7_3hn0w")
 idle_state = NodePath("../idle")
 object = NodePath("../..")
 
-[node name="MovingStates" type="Node" parent="StateMachine" node_paths=PackedStringArray("moving_state", "sprinting_state", "idle_state", "jumping_state", "object")]
+[node name="MovingStates" type="Node" parent="StateMachine" node_paths=PackedStringArray("moving_state", "sprinting_state", "idle_state", "jumping_state", "attack_state", "object")]
 script = ExtResource("6_8jgll")
 moving_state = NodePath("moving")
 sprinting_state = NodePath("sprinting")
 idle_state = NodePath("../idle")
 jumping_state = NodePath("../jumping")
+attack_state = NodePath("../attack")
 object = NodePath("../..")
 
 [node name="sprinting" type="Node" parent="StateMachine/MovingStates" node_paths=PackedStringArray("mesh_instance", "object")]

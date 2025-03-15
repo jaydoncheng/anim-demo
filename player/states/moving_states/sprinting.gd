@@ -16,7 +16,7 @@ func process_input(_event: InputEvent) -> State:
     if !Input.is_action_pressed("sprint"):
         return moving_state
 
-    return
+    return super(_event)
 
 func process_physics(delta) -> State:
     if Input.is_action_pressed("jump"):

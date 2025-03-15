@@ -3,9 +3,6 @@ extends CharacterBody3D
 const MOUSE_SENSITIVITY = 0.00085
 const VERTICAL_ANGLE_LIMIT = 45
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-
 @onready
 var state_machine = $StateMachine
 
@@ -30,7 +27,7 @@ func _physics_process(delta: float):
 
     # moved from moving.gd
     if is_on_floor():
-        velocity = velocity.move_toward(Vector3.ZERO, 0.3) # floor friction
+        velocity = velocity.move_toward(Vector3.ZERO, 0.5) # floor friction
     move_and_slide()
 
 func _process(delta: float):
