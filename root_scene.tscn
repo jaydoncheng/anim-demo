@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bdjq411k6khfd"]
 
 [ext_resource type="Material" uid="uid://cm2q7a244qv66" path="res://materials/plastered_wall_04.tres" id="1_smig7"]
-[ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player.tscn" id="1_y8px8"]
+[ext_resource type="PackedScene" uid="uid://dkeqhhuk7arar" path="res://player/player.tscn" id="1_y8px8"]
 [ext_resource type="Material" uid="uid://oxi14wxraed3" path="res://materials/laminate_floor_02.tres" id="3_yxcan"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p2uhe"]
@@ -28,7 +28,6 @@ ssr_fade_out = 3.4822
 ssao_enabled = true
 ssao_intensity = 3.0
 sdfgi_enabled = true
-sdfgi_use_occlusion = true
 fog_mode = 1
 fog_light_color = Color(0.796192, 0.821936, 0.8858, 1)
 fog_density = 1.0
@@ -74,5 +73,25 @@ material = ExtResource("3_yxcan")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(7.198, 0, 0, 0, 2.537, 0, 0, 0, 4.423, 9.05932, 1.04232, -4.44778)
+use_collision = true
+material = ExtResource("3_yxcan")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(6.28752, 0, -2.15315, 0, 2.537, 0, 3.50404, 0, 3.86353, 27.7135, 5.56819, 2.34173)
+use_collision = true
+material = ExtResource("3_yxcan")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(6.28752, 0, -2.15315, -1.34156, 2.3437, -1.47919, 3.23706, 0.971318, 3.56915, 11.3727, 0.0362411, 0.309777)
+use_collision = true
+material = ExtResource("3_yxcan")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(6.28776, -1.23488, 0, 3.50361, 2.21618, 0, 0, 0, 4.423, 17.9211, 3.14648, -4.44778)
+use_collision = true
+material = ExtResource("3_yxcan")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(5.86074, -1.36601, -0.960305, 2.1337, 1.79397, -2.83938, 3.59309, 1.16279, 3.25249, 27.2527, 6.72972, -4.56828)
 use_collision = true
 material = ExtResource("3_yxcan")
